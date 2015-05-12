@@ -1,4 +1,4 @@
-simple_filter
+simple_search_filter
 =============================
 
 The gem makes it easier to create search filters for your pages.
@@ -11,7 +11,7 @@ The gem uses kaminari for pagination, simple_form with bootstrap styles for buil
 
 Gemfile:
 ```ruby
-gem 'simple_filter'
+gem 'simple_search_filter'
 ```
 
 bundle install

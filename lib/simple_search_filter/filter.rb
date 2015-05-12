@@ -1,6 +1,6 @@
-require 'simple_filter/filter_field'
+require 'simple_search_filter/filter_field'
 
-module SimpleFilter
+module SimpleSearchFilter
   class Filter
     #
     SEARCH_METHOD_GET = :get
@@ -103,7 +103,7 @@ module SimpleFilter
     end
 
     def page_param_name
-      options[:page_param_name] || SimpleFilter.page_default_param_name
+      options[:page_param_name] || SimpleSearchFilter.page_default_param_name
     end
 
 

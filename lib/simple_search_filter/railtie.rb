@@ -1,17 +1,17 @@
 require 'rails/railtie'
 
-module SimpleFilter
+module SimpleSearchFilter
   class Railtie < Rails::Railtie
-    #config.eager_load_namespaces << SimpleFilter
+    #config.eager_load_namespaces << SimpleSearchFilter
 
     if Rails.env.development?
       config.watchable_dirs['lib'] = [:rb]
-      config.watchable_dirs['lib/simple_filter'] = [:rb]
+      config.watchable_dirs['lib/simple_search_filter'] = [:rb]
       config.watchable_dirs['app/views'] = [:rb]
     end
 
 
-    initializer 'simple_filter' do |_app|
+    initializer 'simple_search_filter' do |_app|
       # init my gem
     end
 

@@ -1,0 +1,6 @@
+- if style==:inline
+  = render 'simple_search_filter/form_inline', local_assigns
+- elsif style==:horizontal
+  = render 'simple_search_filter/form_horizontal', local_assigns
+- else
+  = render 'simple_search_filter/form_horizontal', local_assigns

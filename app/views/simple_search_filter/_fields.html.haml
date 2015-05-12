@@ -1,0 +1,4 @@
+- filter.fields.each do |name, field|
+  -#= render :partial=>'simple_search_filter/filter_field', :locals => {:f=>field, :name=>name}
+  = render :partial=>'simple_search_filter/field_simple_form', :locals => {name: name, f: f, filter: filter}
+

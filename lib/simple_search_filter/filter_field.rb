@@ -1,4 +1,4 @@
-module SimpleFilter
+module SimpleSearchFilter
   class FilterField
     TYPE_STRING = 'string'
     TYPE_INT = 'int'

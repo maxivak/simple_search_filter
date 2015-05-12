@@ -1,4 +1,4 @@
-module SimpleFilter
+module SimpleSearchFilter
   module Helpers
     module FormHelper
 
@@ -6,7 +6,7 @@ module SimpleFilter
         options||={}
         style = (options[:style] || 'horizontal').to_sym
 
-        render 'simple_filter/form', style: style, filter_object: filter_object
+        render 'simple_search_filter/form', style: style, filter_object: filter_object
       end
 
       def horizontal_filter_form_for(filter_object, options = {}, &block)
@@ -43,8 +43,8 @@ module SimpleFilter
       capture do
         simple_form_for(:filter, options) do |f|
           concat(hidden_field_tag 'cmd', 'apply')
-          concat(render 'simple_filter/filter_fields', filter: filter_object, f: f)
-          concat(render 'simple_filter/buttons_apply_clear_inline', filter: filter_object, f: f)
+          concat(render 'simple_search_filter/filter_fields', filter: filter_object, f: f)
+          concat(render 'simple_search_filter/buttons_apply_clear_inline', filter: filter_object, f: f)
         end
       end
 

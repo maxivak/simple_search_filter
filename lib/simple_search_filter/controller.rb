@@ -1,6 +1,6 @@
 require 'active_support/concern'
 
-module SimpleFilter
+module SimpleSearchFilter
   module Controller
     extend ActiveSupport::Concern
 
@@ -52,7 +52,7 @@ module SimpleFilter
           prefix = options[:prefix] || "filter_#{params[:controller]}_#{name}"
 
           # create Filter object
-          @filter = SimpleFilter::Filter.new(self.session, prefix, options)
+          @filter = SimpleSearchFilter::Filter.new(self.session, prefix, options)
 
           # define filter
           @filter.instance_eval(&block)

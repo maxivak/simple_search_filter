@@ -1,4 +1,4 @@
-module SimpleFilter
+module SimpleSearchFilter
   module Models
     module SearchableClassMethods
 
