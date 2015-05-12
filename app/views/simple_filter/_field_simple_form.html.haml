@@ -1,0 +1,22 @@
+- field = filter.fields[name]
+- formtype = field.formtype.to_s
+- name ||= field.name.to_s
+- v = filter.v(name)
+
+- if formtype=='empty'
+
+- elsif formtype=='text'
+  = f.input name, label: field.label, required: false
+
+- elsif formtype=='hidden'
+  = f.input name, as: :hidden
+
+- elsif formtype=='select'
+  - opt_base = {as: :select, required: false}
+  = f.input name, opt_base.merge(field.options)
+
+- elsif formtype=='autocomplete'
+  - opt_base = {as: :autocomplete, required: false}
+  - url = send(field.options[:source_query])
+  - field.options[:source_query] = url
+  = f.input name, opt_base.merge(field.options)

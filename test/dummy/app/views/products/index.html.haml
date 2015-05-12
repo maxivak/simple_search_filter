@@ -1,0 +1,18 @@
+%h1 Products
+
+Filter:
+= filter_form_for @filter
+-#= inline_filter_form_for @filter
+-#= horizontal_filter_form_for @filter
+%br
+%table.table
+  %tr
+    %th= link_to_sortable_column :title, 'Title'
+    %th= link_to_sortable_column :price, 'Price'
+
+  - @items.each do |item|
+    %tr
+      %td=item.title
+      %td= item.price
+
+= paginate @items
