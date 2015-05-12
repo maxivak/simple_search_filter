@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = SimpleFilter::VERSION
   s.authors     = ["Max Ivak"]
   s.email       = ["maxivak@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of SimpleFilter."
-  s.description = "TODO: Description of SimpleFilter."
+  s.homepage    = "https://github.com/maxivak/simple_filter"
+  s.summary     = "Create search filters. It helps create forms for search filters, sort, paginate data. "
+  s.description = "The gem makes it easier to create search filters for your pages. It helps create forms for search filters, sort, paginate data. Search filters are forms used to filters the rows on pages with list/table data."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.2.1"
 
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "mysql2"
 end
