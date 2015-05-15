@@ -16,7 +16,7 @@ module SimpleSearchFilter
           # apply fields with custom scopes first
           wscope = f.condition_scope
           if f.condition==FilterField::QUERY_CONDITION_CUSTOM && wscope.present?
-            q = q.send(wscope, v)
+            q = q.send(wscope, val)
           else
             # where
             w_field = f.make_where(val)

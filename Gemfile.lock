@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    simple_search_filter (0.0.2)
-      rails (~> 4.2.1)
+    simple_search_filter (0.0.4)
+      rails (~> 4.2.0)
 
 GEM
   remote: https://rubygems.org/
