@@ -4,10 +4,9 @@
 - v = filter.v(name)
 
 
-- if formtype=='text'
-  %input(type="text" class="form-control" id="filter[#{name}]" name="filter[#{name}]" placeholder="#{f.placeholder}" value="#{v}" )
+- tpl = 'simple_search_filter/fields/'+formtype.to_s
 
-- elsif formtype=='hidden'
-  %input(type="hidden" class="form-control" id="filter[#{name}]" name="filter[#{name}]" value="#{v}")
+= render tpl, filter: filter, field: field
+
 
 

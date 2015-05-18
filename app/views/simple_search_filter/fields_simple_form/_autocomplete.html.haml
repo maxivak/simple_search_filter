@@ -1,0 +1,4 @@
+- opt_base = {as: :autocomplete, required: false, placeholder: field.placeholder}
+- field.options[:source_query] = send(field.options[:source_query])
+
+= f.input field.name, opt_base.merge(field.options)

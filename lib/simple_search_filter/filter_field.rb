@@ -55,7 +55,7 @@ module SimpleSearchFilter
 
 
     def placeholder
-      @options[:placeholder] || ''
+      @options[:placeholder] || @options[:label] || ''
     end
 
     def label
