@@ -30,15 +30,14 @@ module SimpleSearchFilter
 
 
     def field(name, type, formtype, opt={})
-      add_field FilterField.new(name,type, formtype, opt)
-
       if formtype.to_s==FilterField::FORM_TYPE_AUTOCOMPLETE
-        opt_int = opt.clone
-        opt_int[:default_value] = 0
-        add_field FilterField.new(name.to_s+'_id',FilterField::TYPE_INT, FilterField::FORM_TYPE_EMPTY, opt_int)
+        add_field_autocomplete(name, type, formtype, opt)
+      else
+        add_field FilterField.new(name,type, formtype, opt)
       end
 
     end
+
 
 
 
@@ -55,6 +54,36 @@ module SimpleSearchFilter
     def add_fields_from_array(a)
       a.each{|fa| add_field fa}
     end
+
+    def add_field_autocomplete(name, type, formtype, opt={})
+      search_by = opt[:search_by] || :text
+
+      if search_by==:id
+        # filter by id
+
+        # id field
+        opt_id = opt.clone
+        opt_id[:default_value] = 0
+        opt_id[:ignore_value] = 0
+        opt_id[:condition] = FilterField::QUERY_CONDITION_EQUAL
+
+        add_field FilterField.new(:"#{name}_id", FilterField::TYPE_INT, FilterField::FORM_TYPE_EMPTY, opt_id)
+
+        # text field
+        opt_text = opt.clone
+        opt_text[:default_value] = ''
+        opt_text[:ignore_value] = ''
+        opt_text[:condition] = FilterField::QUERY_CONDITION_EMPTY
+
+        add_field FilterField.new(name,type, formtype, opt_text)
+
+      else
+        # filter by text
+        add_field FilterField.new(name,type, formtype, opt)
+      end
+
+    end
+
 
 
     def field_def_value(name)

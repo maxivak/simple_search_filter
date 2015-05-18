@@ -20,7 +20,9 @@ gem 'bootstrap-sass'
 gem 'compass-rails'
 
 gem 'kaminari'
+gem 'kaminari-bootstrap'
 gem 'simple_form'
+gem 'bootstrap3_autocomplete_input'
 
 
 

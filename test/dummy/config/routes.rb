@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :categories do
+    get :autocomplete_category_title, :on => :collection
+
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

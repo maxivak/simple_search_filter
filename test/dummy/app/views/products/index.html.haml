@@ -5,14 +5,18 @@ Filter:
 -#= inline_filter_form_for @filter
 -#= horizontal_filter_form_for @filter
 %br
-%table.table
+%table.table.table-bordered
   %tr
     %th= link_to_sortable_column :title, 'Title'
+    %th Category
     %th= link_to_sortable_column :price, 'Price'
 
   - @items.each do |item|
     %tr
       %td=item.title
+      %td= item.category.title
       %td= item.price
 
 = paginate @items
+%br
+Found: #{@items.total_count}

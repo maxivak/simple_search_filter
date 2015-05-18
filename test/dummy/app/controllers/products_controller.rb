@@ -26,6 +26,7 @@ class ProductsController < ApplicationController
   end
 =end
 
+
   # POST, save in session
 
   search_filter :index, {save_session: true, search_method: :post_and_redirect, url: :products_path, search_url: :search_products_path, search_action: :search} do
@@ -35,20 +36,16 @@ class ProductsController < ApplicationController
     field :price_from, :string, :text, {label: 'Price', default_value: '', condition: :custom, condition_where: 'price >= ?'}
     field :price_to, :string, :text, {label: 'to', default_value: '', condition: :custom, condition_where: 'price <= ?'}
 
+    field :category, :string,  :autocomplete, {label: 'Category', default_value: '', ignore_value: '', search_by: :id, source_query: :autocomplete_category_title_categories_path}
+
   end
 
 
   def index
 
-    #xx = Product.mysearch
-
-    #x = Product.searchable_by_simple_filter
-
-    #y=0
-
     # use model.search_by_filter
-    #v1 = Product.search_by_filter_new @filter
-    @items = Product.by_filter(@filter)
+    #@items = Product.by_filter(@filter)
+    @items = Product.includes(:category).by_filter(@filter)
 
     # use filter.where
     #@items = Product.where(@filter.where).order(@filter.order_string).page(@filter.page)
