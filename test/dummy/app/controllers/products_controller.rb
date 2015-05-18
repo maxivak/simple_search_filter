@@ -32,9 +32,9 @@ class ProductsController < ApplicationController
   search_filter :index, {save_session: true, search_method: :post_and_redirect, url: :products_path, search_url: :search_products_path, search_action: :search} do
     default_order "price", 'asc'
 
-    field :title, :string, :text, {label: 'Title', default_value: '', condition: :like_full}
-    field :price_from, :string, :text, {label: 'Price', default_value: '', condition: :custom, condition_where: 'price >= ?'}
-    field :price_to, :string, :text, {label: 'to', default_value: '', condition: :custom, condition_where: 'price <= ?'}
+    field :title, :string, :text, {label: 'Title', default_value: '', condition: :like_full, input_html: {style: "width: 240px"}}
+    field :price_from, :string, :text, {label: 'Price', default_value: '', condition: :custom, condition_where: 'price >= ?', input_html: {style: "width: 140px"} }
+    field :price_to, :string, :text, {label: 'to', default_value: '', condition: :custom, condition_where: 'price <= ?', input_html: {style: "width: 140px"} }
 
     field :category, :string,  :autocomplete, {label: 'Category', default_value: '', ignore_value: '', search_by: :id, source_query: :autocomplete_category_title_categories_path}
 
