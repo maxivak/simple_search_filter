@@ -196,7 +196,10 @@ module SimpleSearchFilter
     end
 
     def set(field_name,v)
-      data[field_name.to_s] = @fields[field_name].fix_value(v)
+      field = @fields[field_name]
+      vv = field.nil? ? v : field.fix_value(v)
+      data[field_name.to_s] = vv
+
     end
 
 
