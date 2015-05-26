@@ -178,7 +178,8 @@ module SimpleSearchFilter
     def v(name, v_def=nil)
       name = name.to_s
 
-      if (data.has_key? name) && (!data[name].nil?) && (!data[name].blank?)
+      if (data.has_key? name)
+      #&& (!data[name].nil?) && (!data[name].blank?)
         return data[name]
       end
 
@@ -219,8 +220,11 @@ module SimpleSearchFilter
 
           next unless @fields.has_key? name
 
-          if @fields[name].type==FilterField::TYPE_INT
+          t = @fields[name].type
+          if t==FilterField::TYPE_INT
             set name, (v.to_i rescue 0)
+          elsif t==FilterField::TYPE_BOOLEAN
+            set name, FilterField.fix_value_boolean(v)
           else
             set name, v
           end
@@ -237,6 +241,7 @@ module SimpleSearchFilter
       end
 
     end
+
 
 
     ####

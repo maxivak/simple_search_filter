@@ -2,11 +2,14 @@ module SimpleSearchFilter
   class FilterField
     TYPE_STRING = 'string'
     TYPE_INT = 'int'
+    TYPE_BOOLEAN = 'boolean'
     TYPE_DATE = 'date'
+
 
     FORM_TYPE_EMPTY = 'empty'
     FORM_TYPE_TEXT = 'text'
     FORM_TYPE_HIDDEN = 'hidden'
+    FORM_TYPE_CHECKBOX = 'checkbox'
     FORM_TYPE_SELECT = 'select' # drop-down select
     FORM_TYPE_AUTOCOMPLETE = 'autocomplete' # text with autocomplete
 
@@ -113,9 +116,36 @@ module SimpleSearchFilter
         return (v.to_i rescue 0)
       elsif type==TYPE_STRING
         return v.to_s
+      elsif type==TYPE_BOOLEAN
+        return FilterField.fix_value_boolean(v)
       end
 
       v
+    end
+
+
+    def self.fix_value_boolean(v)
+      # if it is boolean => use as is
+      return v if !!v==v
+
+      return false if v.nil?
+
+      # fix from other types
+      res = false
+
+      if v.is_a? String
+        if v.blank?
+          v = "0"
+        end
+
+        res = v.to_i == 1
+      elsif v.is_a? Fixnum
+        res = v.to_i == 1
+      else
+        res = !(v.empty?)
+      end
+
+      res
     end
 
 
