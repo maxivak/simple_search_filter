@@ -1,6 +1,7 @@
 - url = send(filter_object.search_url)
 
-= simple_form_for(:filter, {url: url, html: {id: 'formFilter', class: 'form-inline', role: 'form'}, wrapper: :inline_filter_form, wrapper_mappings: {} }) do |f|
+= simple_form_for(:filter, {url: url, html: {id: 'formFilter', class: 'form-inline', role: 'form'}, wrapper: :inline_filter_form, wrapper_mappings: {} }) do |ff|
+  - f = ff.data
   = hidden_field_tag 'cmd', 'apply'
   = render 'simple_search_filter/fields', filter: filter_object, f: f
   = render 'simple_search_filter/buttons_apply_clear_inline', filter: filter_object, f: f

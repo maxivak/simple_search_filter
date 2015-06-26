@@ -183,7 +183,10 @@ module SimpleSearchFilter
         return data[name]
       end
 
-      field_def_value(name) || v_def
+      v = field_def_value(name)
+      return v unless v.nil?
+
+      v_def
     end
 
 

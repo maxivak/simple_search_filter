@@ -66,7 +66,7 @@ module SimpleSearchFilter
     end
 
     def default_value
-      options[:default_value] || nil
+      options[:default_value]
     end
 
     def ignore_value
