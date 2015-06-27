@@ -1,4 +1,8 @@
-- opt_base = {as: :autocomplete, required: false, placeholder: field.placeholder}
 - field.options[:source_query] = send(field.options[:source_query])
+- opt_base = {as: :autocomplete, required: false, placeholder: field.placeholder}
+- opts = field.options.merge(opt_base)
+- opts[:value] = filter.v(filter.field_name_for_id_autocomplete(name))
+- opts[:value_text] = v
 
-= f.input field.name, opt_base.merge(field.options)
+
+= f.input field.name, opts

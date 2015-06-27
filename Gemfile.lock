@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_search_filter (0.0.13)
+    simple_search_filter (0.0.14)
       rails (~> 4.2.0)
 
 GEM
@@ -49,7 +49,7 @@ GEM
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
-    bootstrap3_autocomplete_input (0.1.0)
+    bootstrap3_autocomplete_input (0.1.2)
     builder (3.2.2)
     chunky_png (1.3.4)
     coffee-rails (4.1.0)
@@ -182,7 +182,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
-  bootstrap3_autocomplete_input
+  bootstrap3_autocomplete_input (= 0.1.2)
   coffee-rails
   compass-rails
   font-awesome-rails

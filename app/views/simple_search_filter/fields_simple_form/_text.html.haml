@@ -1,5 +1,6 @@
 - opt_base = {as: :string, required: false, label: field.label, placeholder: field.placeholder}
-- opt_base[:input_html] ||={}
--# opt_base[:input_html] = opt_base[:input_html].merge({style: "width: 80px"})
--#= f.input field.name, label: field.label, required: false, placeholder: field.placeholder, input_html: {style: "width: 80px"}
-= f.input field.name, opt_base.merge(field.options)
+- opts = field.options.merge(opt_base)
+- opts[:input_html] ||={}
+- opts[:input_html][:value] = v
+
+= f.input field.name, opts

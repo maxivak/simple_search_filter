@@ -1,2 +1,6 @@
 - opt_base = {as: :boolean, required: false, placeholder: field.placeholder}
-= f.input field.name, opt_base.merge(field.options)
+- opts = field.options.merge(opt_base)
+- opts[:input_html] ||={}
+- opts[:input_html][:checked] = v
+
+= f.input field.name, opts

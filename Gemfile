@@ -22,7 +22,7 @@ gem 'compass-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'simple_form'
-gem 'bootstrap3_autocomplete_input'
+gem 'bootstrap3_autocomplete_input', '0.1.2'
 
 
 

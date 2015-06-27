@@ -5,9 +5,10 @@
 
 
 
+
 - if formtype=='empty'
 
 - else
   - tpl = 'simple_search_filter/fields_simple_form/'+formtype.to_s
 
-  = render tpl, f: f, filter: filter, field: field, name: name
+  = render tpl, f: f, filter: filter, field: field, name: name, v: v

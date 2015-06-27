@@ -40,6 +40,8 @@ module SimpleSearchFilter
         (redirect_to action: name.to_sym and return) if @filter.search_method_post_and_redirect?
       end
 
+
+
     end
 
     module ClassMethods

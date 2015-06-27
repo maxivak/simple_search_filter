@@ -1,4 +1,5 @@
 require 'simple_search_filter/filter_field'
+require 'simple_search_filter/filter_data'
 
 module SimpleSearchFilter
   class Filter
@@ -67,7 +68,8 @@ module SimpleSearchFilter
         opt_id[:ignore_value] = 0
         opt_id[:condition] = FilterField::QUERY_CONDITION_EQUAL
 
-        add_field FilterField.new(:"#{name}_id", FilterField::TYPE_INT, FilterField::FORM_TYPE_EMPTY, opt_id)
+        id_name = field_name_for_id_autocomplete(name).to_sym
+        add_field FilterField.new(id_name, FilterField::TYPE_INT, FilterField::FORM_TYPE_EMPTY, opt_id)
 
         # text field
         opt_text = opt.clone
@@ -85,6 +87,9 @@ module SimpleSearchFilter
     end
 
 
+    def field_name_for_id_autocomplete(name)
+      "#{name}_id"
+    end
 
     def field_def_value(name)
       name = name.to_sym
@@ -159,17 +164,27 @@ module SimpleSearchFilter
       return @data unless @data.nil?
 
       # from session
-      @data_sess = session_get 'data', nil
-      unless @data_sess.nil?
-        @data = @data_sess
-      else
-
+      data_sess = session_get 'data', nil
+      unless data_sess.nil?
+        if data_sess.is_a?(FilterData)
+          @data = data_sess
+        elsif data_sess.is_a?(Hash)
+          @data = FilterData.new
+          @data.set_values(data_sess)
+        else
+          #y=0
+        end
       end
 
       #
-      @data ||= {}
+      @data ||= FilterData.new
 
-      session_save('data', @data)
+      session_save('data', @data.values)
+
+      # TODO: debug
+      #@data = FilterData.new
+      #session_save('data', @data)
+      #x = session_get 'data', nil
 
       #
       @data
@@ -178,38 +193,29 @@ module SimpleSearchFilter
     def v(name, v_def=nil)
       name = name.to_s
 
-      if (data.has_key? name)
-      #&& (!data[name].nil?) && (!data[name].blank?)
-        return data[name]
-      end
-
-      v = field_def_value(name)
-      return v unless v.nil?
+      res = data.v(name, field_def_value(name))
+      return res unless res.nil?
 
       v_def
     end
 
 
     def v_empty?(name)
-      if (data.has_key? name) && (!data[name].nil?)
-        return true
-      end
-
-      # if v == default value
-
+      data.v_empty?(name)
     end
 
     def set(field_name,v)
       field = @fields[field_name]
       vv = field.nil? ? v : field.fix_value(v)
-      data[field_name.to_s] = vv
 
+      data.set(field_name, vv)
     end
 
 
 
     def clear_data
-      @data = {}
+      data.clear
+
       session_save 'data', @data
     end
 
@@ -238,7 +244,7 @@ module SimpleSearchFilter
       # default values from fields
       @fields.each do |k, f|
         name = k.to_s
-        next if @data.has_key? name
+        next if data.v_exist? name
 
         set name, field_def_value(name)
       end
@@ -394,17 +400,6 @@ module SimpleSearchFilter
       [w_string, *w_values]
     end
 
-
-    ####
-
-    def method_missing(method_sym, *arguments, &block)
-      # the first argument is a Symbol, so you need to_s it if you want to pattern match
-      if @fields.has_key? method_sym
-        v(method_sym)
-      else
-        super
-      end
-    end
 
   end
 

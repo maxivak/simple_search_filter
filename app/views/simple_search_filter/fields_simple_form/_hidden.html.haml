@@ -1,1 +1,6 @@
-= f.input field.name, as: :hidden
+- opt_base = {as: :hidden}
+- opts = field.options.merge(opt_base)
+- opts[:input_html] ||={}
+- opts[:input_html][:value] = v
+
+= f.input field.name, opts
