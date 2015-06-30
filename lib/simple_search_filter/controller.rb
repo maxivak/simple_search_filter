@@ -20,6 +20,11 @@ module SimpleSearchFilter
       end
 
 
+      #
+      if cmd=='apply' || cmd=='set' || cmd=='clear'
+        @filter.clear_all
+      end
+
       # input from GET
       @filter.fields.each do |name, f|
         if params.has_key? name
@@ -27,15 +32,13 @@ module SimpleSearchFilter
         end
       end
 
-      #
-      if cmd=='apply' || cmd=='set' || cmd=='clear'
-        @filter.clear_all
-      end
 
+      # input from form
       # post - save filter and redirect
       #if request.post? && params[:filter]
       if params[:filter]
         @filter.set_data_from_form params[:filter]
+        @filter.data_save_to_session
         #(redirect_to url and return) if @filter.search_method_post_and_redirect?
       else
         # clean url => set page to 1
@@ -43,8 +46,6 @@ module SimpleSearchFilter
           @filter.page=1
         elsif cmd=='back'
           # do not touch filter - load it from session
-
-
         end
 
       end

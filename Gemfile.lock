@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_search_filter (0.0.21)
+    simple_search_filter (0.0.22)
       rails (~> 4.2.0)
 
 GEM
