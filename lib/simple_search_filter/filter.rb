@@ -220,7 +220,7 @@ module SimpleSearchFilter
     def clear_data
       data.clear
 
-      session_save 'data', @data
+      data_save_to_session
     end
 
     def set_data_from_form(params)

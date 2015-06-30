@@ -25,31 +25,34 @@ module SimpleSearchFilter
         @filter.clear_all
       end
 
-      # input from GET
-      @filter.fields.each do |name, f|
-        if params.has_key? name
-          @filter.set name, params[name]
-        end
-      end
-
-
-      # input from form
-      # post - save filter and redirect
-      #if request.post? && params[:filter]
-      if params[:filter]
-        @filter.set_data_from_form params[:filter]
-        #(redirect_to url and return) if @filter.search_method_post_and_redirect?
-      else
-        # clean url => set page to 1
-        if @filter.search_method_post_and_redirect? && request.get? && cmd=='' && pg.nil?
-          @filter.page=1
-        elsif cmd=='back'
-          # do not touch filter - load it from session
+      # collect input
+      if cmd!='clear'
+        # input from GET
+        @filter.fields.each do |name, f|
+          if params.has_key? name
+            @filter.set name, params[name]
+          end
         end
 
-      end
+        # input from form
+        # post - save filter and redirect
+        #if request.post? && params[:filter]
+        if params[:filter] && cmd!='clear'
+          @filter.set_data_from_form params[:filter]
+          #(redirect_to url and return) if @filter.search_method_post_and_redirect?
+        else
+          # clean url => set page to 1
+          if @filter.search_method_post_and_redirect? && request.get? && cmd=='' && pg.nil?
+            @filter.page=1
+          elsif cmd=='back'
+            # do not touch filter - load it from session
+          end
 
-      @filter.data_save_to_session
+        end
+
+        @filter.data_save_to_session
+
+      end
 
 
       #

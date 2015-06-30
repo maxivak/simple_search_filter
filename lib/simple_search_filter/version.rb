@@ -1,3 +1,3 @@
 module SimpleSearchFilter
-  VERSION = "0.0.25"
+  VERSION = "0.0.26"
 end
