@@ -27,20 +27,15 @@ module SimpleSearchFilter
         end
       end
 
+      #
+      if cmd=='apply' || cmd=='set' || cmd=='clear'
+        @filter.clear_all
+      end
+
       # post - save filter and redirect
       #if request.post? && params[:filter]
       if params[:filter]
-        if cmd=='clear'
-          @filter.clear_all
-        else
-          if cmd=='apply' || cmd=='set'
-            @filter.clear_all
-          end
-
-          #
-          @filter.set_data_from_form params[:filter]
-        end
-
+        @filter.set_data_from_form params[:filter]
         #(redirect_to url and return) if @filter.search_method_post_and_redirect?
       else
         # clean url => set page to 1
@@ -49,7 +44,7 @@ module SimpleSearchFilter
         elsif cmd=='back'
           # do not touch filter - load it from session
 
-          
+
         end
 
       end
