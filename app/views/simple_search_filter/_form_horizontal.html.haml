@@ -1,7 +1,7 @@
 - url = send(filter_object.search_url)
 
 = simple_form_for(:filter, {url: url, method: filter_object.form_method, html: {id: 'formFilter', class: 'form-horizontal', role: 'form'}, wrapper: :horizontal_filter_form, wrapper_mappings: {check_boxes: :horizontal_filter_radio_and_checkboxes, radio_buttons: :horizontal_filter_radio_and_checkboxes, boolean: :horizontal_filter_boolean} }) do |f|
-  = hidden_field_tag 'cmd', 'apply'
+  = hidden_field_tag 'filter_cmd', 'apply'
   = render 'simple_search_filter/fields', filter: filter_object, f: f
   = render 'simple_search_filter/buttons_apply_clear_inline', filter: filter_object, f: f
 

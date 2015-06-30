@@ -11,7 +11,7 @@ module SimpleSearchFilter
     def init_search_data(name)
       # input
       pg = params[@filter.page_param_name]
-      cmd = params[:cmd] || ''
+      cmd = params[:filter_cmd] || ''
 
       # page
       unless pg.nil?
@@ -44,8 +44,12 @@ module SimpleSearchFilter
         #(redirect_to url and return) if @filter.search_method_post_and_redirect?
       else
         # clean url => set page to 1
-        if request.get? && cmd=='' && pg.nil?
+        if @filter.search_method_post_and_redirect? && request.get? && cmd=='' && pg.nil?
           @filter.page=1
+        elsif cmd=='back'
+          # do not touch filter - load it from session
+
+          
         end
 
       end
