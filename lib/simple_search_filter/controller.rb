@@ -10,11 +10,15 @@ module SimpleSearchFilter
 
     def init_search_data(name)
       # input
-      pg = params[@filter.page_param_name].to_i || 1
+      pg = params[@filter.page_param_name]
       cmd = params[:cmd] || ''
 
       # page
-      @filter.page = pg
+      unless pg.nil?
+        pg = (pg.to_i rescue 1)
+        @filter.page = pg
+      end
+
 
       # input from GET
       @filter.fields.each do |name, f|
