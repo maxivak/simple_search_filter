@@ -212,6 +212,11 @@ module SimpleSearchFilter
     end
 
 
+    def clear_all
+      self.page=1
+      clear_order
+      clear_data
+    end
 
     def clear_data
       data.clear
@@ -311,6 +316,9 @@ module SimpleSearchFilter
     end
 
     def set_default_order(order_by, order_dir)
+      @order_default = [[order_by, order_dir]]
+
+      #
       return false if !order.nil? && !order.empty?
 
       set_order(order_by, order_dir)
@@ -325,6 +333,10 @@ module SimpleSearchFilter
     def get_order
       order[0] if order.count>0
       order[0]
+    end
+
+    def clear_order
+      self.order = @order_default
     end
 
 

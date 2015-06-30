@@ -31,20 +31,29 @@ module SimpleSearchFilter
       #if request.post? && params[:filter]
       if params[:filter]
         if cmd=='clear'
-          @filter.clear_data
+          @filter.clear_all
         else
+          if cmd=='apply' || cmd=='set'
+            @filter.clear_all
+          end
+
+          #
           @filter.set_data_from_form params[:filter]
         end
 
         #(redirect_to url and return) if @filter.search_method_post_and_redirect?
+      else
+        # clean url => set page to 1
+        if request.get? && cmd=='' && pg.nil?
+          @filter.page=1
+        end
+
       end
 
       if cmd=='order'
         @filter.set_order params[:orderby], params[:orderdir]
         (redirect_to action: name.to_sym and return) if @filter.search_method_post_and_redirect?
       end
-
-
 
     end
 
