@@ -11,7 +11,7 @@ module SimpleSearchFilter
     def init_search_data(name)
       # input
       pg = params[@filter.page_param_name]
-      cmd = params[:filter_cmd] || ''
+      cmd = params[Filter::CMD_PARAM_NAME] || ''
 
       # page
       unless pg.nil?

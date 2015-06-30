@@ -3,6 +3,9 @@ require 'simple_search_filter/filter_data'
 
 module SimpleSearchFilter
   class Filter
+    CMD_PARAM_NAME = :filter_cmd
+    CMD_ORDER = 'order'
+
     #
     SEARCH_METHOD_GET = :get
     SEARCH_METHOD_POST_AND_REDIRECT = :post_and_redirect
@@ -363,7 +366,7 @@ module SimpleSearchFilter
 
     def url_params_for_sortable_column(name)
       p = {}
-      p[:cmd] = 'order'
+      p[CMD_PARAM_NAME] = CMD_ORDER
       p[:orderby] = name.to_s
       p[:orderdir] = get_opposite_order_dir_for_column(name)
 
