@@ -179,15 +179,14 @@ module SimpleSearchFilter
       #
       @data ||= FilterData.new
 
-      session_save('data', @data.values)
-
-      # TODO: debug
-      #@data = FilterData.new
-      #session_save('data', @data)
-      #x = session_get 'data', nil
+      data_save_to_session
 
       #
       @data
+    end
+
+    def data_save_to_session
+      session_save('data', @data.values)
     end
 
     def v(name, v_def=nil)
@@ -230,18 +229,18 @@ module SimpleSearchFilter
         name = k.to_sym
 
         #if f =~ /^filter\[([^\]]+)\]$/
-          #name = Regexp.last_match(1)
+        #name = Regexp.last_match(1)
 
-          next unless @fields.has_key? name
+        next unless @fields.has_key? name
 
-          t = @fields[name].type
-          if t==FilterField::TYPE_INT
-            set name, (v.to_i rescue 0)
-          elsif t==FilterField::TYPE_BOOLEAN
-            set name, FilterField.fix_value_boolean(v)
-          else
-            set name, v
-          end
+        t = @fields[name].type
+        if t==FilterField::TYPE_INT
+          set name, (v.to_i rescue 0)
+        elsif t==FilterField::TYPE_BOOLEAN
+          set name, FilterField.fix_value_boolean(v)
+        else
+          set name, v
+        end
 
         #end
       end
