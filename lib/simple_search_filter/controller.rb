@@ -38,7 +38,6 @@ module SimpleSearchFilter
       #if request.post? && params[:filter]
       if params[:filter]
         @filter.set_data_from_form params[:filter]
-        @filter.data_save_to_session
         #(redirect_to url and return) if @filter.search_method_post_and_redirect?
       else
         # clean url => set page to 1
@@ -50,6 +49,10 @@ module SimpleSearchFilter
 
       end
 
+      @filter.data_save_to_session
+
+
+      #
       if cmd=='order'
         @filter.set_order params[:orderby], params[:orderdir]
         (redirect_to action: name.to_sym and return) if @filter.search_method_post_and_redirect?
