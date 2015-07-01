@@ -202,7 +202,7 @@ Options for select are taken from simple_form.
 field :category, :string, :autocomplete, {label: 'Category', default_value: '', :source_query => :autocomplete_categories_url}
 ```
 
-It uses [https://github.com/maxivak/bootstrap3_autocomplete_input](bootstrap3_autcomplete_input gem). See availableoptions in the [https://github.com/maxivak/bootstrap3_autocomplete_input](gem).
+It uses [bootstrap3_autcomplete_input gem](https://github.com/maxivak/bootstrap3_autocomplete_input). See availableoptions in the [gem](https://github.com/maxivak/bootstrap3_autocomplete_input).
 
 by default, it will be filtered by text field :category, not by id.
 
