@@ -6,7 +6,7 @@ It helps create forms for search filters, sort, paginate data.
 
 Search filters are forms used to filters the rows on pages with list/table data.
 
-The gem uses kaminari for pagination, simple_form with bootstrap styles for building forms.
+The gem uses [kaminari](https://github.com/amatsuda/kaminari) for pagination, [simple_form](https://github.com/plataformatec/simple_form) with bootstrap styles for building forms.
 
 # Installation
 
