@@ -22,6 +22,6 @@ bundle install
 
 # Examples
 
-Find examples on Wiki
+Find examples on (Wiki)[https://github.com/maxivak/simple_search_filter/wiki/examples]
 
 
