@@ -21,8 +21,7 @@ bundle install
 
 ## Controller
 
-Define filter in controller:
-
+Define filter in controller
 ```ruby
 # app/controllers/products_controller.rb
 
@@ -34,15 +33,18 @@ class ProductsController < ApplicationController
 	  field :title, :string, :text, {label: 'Title', default_value: '', condition: :like_full}
 	
 	end
+
 ...
+	
 
 end
 
 ```
 This will define filter with one field 'title' with value of type 'string' and form input of type 'text'.
 
+Here, `:index` is the corresponding action name for which filter is defined.
 
-Use filter in action:
+Define `index` action in controller and use filter to get data:
 ```ruby
 # app/controllers/products_controller.rb
 
@@ -51,22 +53,37 @@ class ProductsController < ApplicationController
 ...
 def index
 	@items = Product.by_filter (@filter)
-
-	# or
-	@items = Product.where(@filter.where).order(@filter.order_string).page(@filter.page)
-
-	# or use filter values in where
-	category_id = @filter.v(:category_id)
-
-	@items = Product.where(:category_id=> category_id).page(@filter.page)
-
 end
 
 
 end
 ```
 
+
+
+### Search using GET request
+
 By default, params for filter are passed using GET request.
+
+
+```ruby
+# app/controllers/products_controller.rb
+
+class ProductsController < ApplicationController
+
+	search_filter :index, {url: :products_path} do
+	  ...
+	
+	end
+...
+
+end
+
+```
+
+
+
+### Search using POST request
 
 If you want search form to be submitted by POST method use option ':search_method=>:post_and_redirect':
 
@@ -76,9 +93,7 @@ class ProductsController < ApplicationController
 
 
 search_filter :index, {save_session: true, search_method: :post_and_redirect, url: :products_url, search_url: :search_products_url, search_action: :search} do
-  default_order "price", 'asc'
-
-  field :title, :string, :text, {label: 'Title', default_value: '', condition: :like_full}
+  ...
 
 end
 
@@ -90,11 +105,7 @@ end
 
 ```
 
-Read more in [https://github.com/maxivak/simple_search_filter/wiki/search-post](Wiki)
-
-
-## Routes
-if used post method to a separate action (search_method: :post_and_redirect) then a route for search action should be created:
+If it is posted to a separate action (search_method: :post_and_redirect) then a route for search action should be created:
 
 Define route for processiong POST request:
 ```ruby
@@ -106,6 +117,11 @@ Myrails::Application.routes.draw do
 	end
 end
 ```
+
+
+Read more in [https://github.com/maxivak/simple_search_filter/wiki/search-post](Wiki-Search using POST)
+
+
 
 ## Model
 
