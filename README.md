@@ -179,7 +179,52 @@ Filter:
 ```
 
 
+# Input Types
 
+- text
+
+- hidden
+
+
+- select
+
+```ruby
+field :int, :string, :select, { label: 'Category', default_value: 0, collection: [['USD',1],['CAD',2]], label_method: :first, value_method: :last}
+
+field :category_id, :int, :select, {label: 'Category', default_value: 0, collection: Category.all, label_method: :name, value_method: :id}
+```
+
+Options for select are taken from simple_form.
+
+- autocomplete
+
+```ruby
+field :category, :string, :autocomplete, {label: 'Category', default_value: '', :source_query => :autocomplete_categories_url}
+```
+
+It uses [https://github.com/maxivak/bootstrap3_autocomplete_input](bootstrap3_autcomplete_input gem). See availableoptions in the [https://github.com/maxivak/bootstrap3_autocomplete_input](gem).
+
+by default, it will be filtered by text field :category, not by id.
+
+usually, field of type autocomplete is used to filter by id. Use option :search_by =>:id to search by id value:
+```ruby
+field :category, :string, :autocomplete, {search_by: :id, label: 'Category', default_value: '', :source_query => :autocomplete_categories_url}
+```
+
+
+
+
+# Features
+
+## Search modes
+* [Search using GET request](search-get)
+* [Search using POST-and-Redirect pattern](search-post)
+
+## Filter data
+* [Access filter data](filter-data)
+
+## Search model
+* [Search model](search-model)
 
 
 # Examples
