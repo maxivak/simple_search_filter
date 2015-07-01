@@ -217,6 +217,35 @@ field :category, :string, :autocomplete, {search_by: :id, label: 'Category', def
 # Features
 
 
+**Search modes**
+* [Search using GET request](https://github.com/maxivak/simple_search_filter/wiki/search-get)
+* [Search using POST-and-Redirect pattern](https://github.com/maxivak/simple_search_filter/wiki/search-post)
+
+**Fields**
+* [Field options](https://github.com/maxivak/simple_search_filter/wiki/field-options)
+
+**Config**
+* [Config](https://github.com/maxivak/simple_search_filter/wiki/config)
+
+**Filter data**
+* [Access filter data](https://github.com/maxivak/simple_search_filter/wiki/filter-data)
+
+**Search model**
+* [Search model](https://github.com/maxivak/simple_search_filter/wiki/search-model)
+
+**View**
+* [Pagination](https://github.com/maxivak/simple_search_filter/wiki/pagination)
+* [Sortable columns](https://github.com/maxivak/simple_search_filter/wiki/sortable-columns)
+
+
+# Customization
+Read in wiki: [Customization](https://github.com/maxivak/simple_search_filter/wiki/customization)
+
+
+# How it works
+Read in wiki: [How it works](https://github.com/maxivak/simple_search_filter/wiki/dev-insights)
+
+
 
 # Examples
 
