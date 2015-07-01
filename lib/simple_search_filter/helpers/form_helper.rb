@@ -57,7 +57,18 @@ module SimpleSearchFilter
         #html_options[:method] = @filter.form_method
         url = send(@filter.url, @filter.url_params_for_sortable_column(field_name))
 
-        link_to(title, url, html_options)
+        opt_show_arrows = html_options[:show_arrows].presence || SimpleSearchFilter.sortable_column_show_arrows
+        order_dir = @filter.get_order_dir_for_column(field_name) if opt_show_arrows
+
+        if !opt_show_arrows || order_dir.nil?
+          link_to(title, url, html_options)
+        else
+          # with arrows
+          link_to(url, html_options) do
+            (title+' <i class="fa fa-sort-'+order_dir+'"></i>').html_safe
+          end
+        end
+
       end
 
 

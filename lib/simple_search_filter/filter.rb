@@ -342,14 +342,43 @@ module SimpleSearchFilter
     end
 
 
+    # return nil if not sorted by this column
+    # return order dir if sorted by this column
+    def get_order_dir_for_column(name)
+      name = name.to_s
+      current_column = get_order_column
+
+      return nil unless current_column==name
+
+      dir = get_order_dir
+      return nil if dir.nil?
+
+      dir
+    end
+
+    def get_order_column
+      ord = order
+      return nil if ord.empty?
+
+      ord[0][0].to_s
+    end
+
+    def get_order_dir
+      ord = order
+      return nil if ord.empty?
+
+      ord[0][1].to_s
+    end
+
+
     def get_opposite_order_dir_for_column(name)
       name = name.to_s
 
-      ord = order
-      return 'asc' if ord.empty?
+      ord_column = get_order_column
+      return 'asc' if ord_column.nil?
 
-      if ord[0][0].to_s == name
-        return opposite_order_dir(ord[0][1])
+      if ord_column == name
+        return opposite_order_dir(order[0][1])
       end
 
       return 'asc'
@@ -361,6 +390,8 @@ module SimpleSearchFilter
       return 'desc' if order_dir=='asc'
       'asc'
     end
+
+
 
 
 

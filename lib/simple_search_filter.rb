@@ -1,8 +1,16 @@
 module SimpleSearchFilter
   mattr_accessor :page_default_param_name
 
-  def page_default_param_name
+  def self.page_default_param_name
     (@@page_default_param_name || :page).to_sym
+  end
+
+  mattr_accessor :sortable_column_show_arrows
+
+  def self.sortable_column_show_arrows
+    v = @@sortable_column_show_arrows
+    v = true if v.nil?
+    v
   end
 
 end

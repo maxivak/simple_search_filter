@@ -9,16 +9,22 @@ gemspec
 gem 'rails', '~>4.2'
 gem 'mysql2'
 
-gem 'haml-rails'
+#
+gem 'haml-rails', '~>0.6.0'
 
-gem 'sass-rails'
+gem 'sass', '~> 3.2.19'
+gem 'sass-rails', '4.0.3'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'font-awesome-rails'
 gem 'bootstrap-sass'
-gem 'compass-rails'
+gem 'compass', '~> 0.12.7'
+gem 'compass-rails', '~> 2.0.0'
 
+
+#
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'simple_form'
