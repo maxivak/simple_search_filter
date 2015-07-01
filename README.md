@@ -148,7 +148,7 @@ render form using simple_form with bootstrap:
 # render inline form
 = inline_filter_form_for(@filter) 
 
-# redner horizontal form
+# render horizontal form
 = horizontal_filter_form_for(@filter)
 ```
 
@@ -203,7 +203,7 @@ Options for select are taken from simple_form.
 field :category, :string, :autocomplete, {label: 'Category', default_value: '', :source_query => :autocomplete_categories_url}
 ```
 
-It uses [bootstrap3_autcomplete_input gem](https://github.com/maxivak/bootstrap3_autocomplete_input). See availableoptions in the [gem](https://github.com/maxivak/bootstrap3_autocomplete_input).
+It uses [bootstrap3_autcomplete_input gem](https://github.com/maxivak/bootstrap3_autocomplete_input). See available options in the [gem](https://github.com/maxivak/bootstrap3_autocomplete_input).
 
 by default, it will be filtered by text field :category, not by id.
 
