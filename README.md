@@ -216,15 +216,6 @@ field :category, :string, :autocomplete, {search_by: :id, label: 'Category', def
 
 # Features
 
-## Search modes
-* [Search using GET request](search-get)
-* [Search using POST-and-Redirect pattern](search-post)
-
-## Filter data
-* [Access filter data](filter-data)
-
-## Search model
-* [Search model](search-model)
 
 
 # Examples
