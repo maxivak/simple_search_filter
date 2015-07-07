@@ -37,7 +37,12 @@ class ProductsController < ApplicationController
     field :price_to, :string, :text, {label: 'to', default_value: '', condition: :custom, condition_where: 'price <= ?', input_html: {style: "width: 140px"} }
 
     #field :category_id, :int,  :select, {label: 'Category', default_value: 0, ignore_value: 0, collection: Category.all, label_method: :title, value_method: :id, include_blank: true }
-    field :category, :string,  :autocomplete, {label: 'Category', default_value: '', ignore_value: '', search_by: :id, source_query: :autocomplete_category_title_categories_path}
+
+    # autocomplete - basic
+    #field :category, :string,  :autocomplete, {label: 'Category', default_value: '', ignore_value: '', search_by: :id, source_query: :autocomplete_category_title_categories_path}
+
+    # autocomplete with custom scope
+    field :category, :string,  :autocomplete, {label: 'Category', default_value: '', ignore_value: '', search_by: :id, source_query: :autocomplete_category_title_categories_path, condition: :custom, condition_scope: :of_category}
 
     field :archived, :boolean,  :checkbox, {label: 'Include archived', default_value: false, ignore_value: true, condition: :custom, condition_scope: :archived}
 

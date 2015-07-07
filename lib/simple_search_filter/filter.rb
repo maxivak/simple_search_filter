@@ -69,7 +69,8 @@ module SimpleSearchFilter
         opt_id = opt.clone
         opt_id[:default_value] = 0
         opt_id[:ignore_value] = 0
-        opt_id[:condition] = FilterField::QUERY_CONDITION_EQUAL
+        opt_id[:condition] = opt[:condition] || FilterField::QUERY_CONDITION_EQUAL
+        opt_id[:condition_scope] = opt[:condition_scope]
 
         id_name = field_name_for_id_autocomplete(name).to_sym
         add_field FilterField.new(id_name, FilterField::TYPE_INT, FilterField::FORM_TYPE_EMPTY, opt_id)
