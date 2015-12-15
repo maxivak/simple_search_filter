@@ -58,7 +58,10 @@ module SimpleSearchFilter
       #
       if cmd=='order'
         @filter.set_order params[:orderby], params[:orderdir]
-        (redirect_to action: name.to_sym and return) if @filter.search_method_post_and_redirect?
+        #(redirect_to action: name.to_sym and return) if @filter.search_method_post_and_redirect?
+        if @filter.search_method_post_and_redirect?
+          redirect_to main_app.send(@filter.options[:url])
+        end
       end
 
     end
@@ -89,7 +92,8 @@ module SimpleSearchFilter
 
         #
         define_method("#{options[:search_action]}") do
-          redirect_to action: name.to_sym
+          #redirect_to action: name.to_sym
+          redirect_to main_app.send(options[:url])
         end
       end
 
