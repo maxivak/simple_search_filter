@@ -23,6 +23,7 @@ bundle install
 ## Controller
 
 Define filter in controller
+
 ```ruby
 # app/controllers/products_controller.rb
 
@@ -46,6 +47,7 @@ This will define filter with one field 'title' with value of type 'string' and f
 Here, `:index` is the corresponding action name for which filter is defined.
 
 Define `index` action in controller and use filter to get data:
+
 ```ruby
 # app/controllers/products_controller.rb
 
@@ -93,7 +95,7 @@ If you want search form to be submitted by POST method use option ':search_metho
 class ProductsController < ApplicationController
 
 
-search_filter :index, {save_session: true, search_method: :post_and_redirect, url: :products_url, search_url: :search_products_url, search_action: :search} do
+search_filter :index, {save_session: true, search_method: :post_and_redirect, url: :products_url, search_url: :search_products_url} do
   ...
 
 end
@@ -108,7 +110,7 @@ end
 
 If it is posted to a separate action (search_method: :post_and_redirect) then a route for search action should be created:
 
-Define route for processiong POST request:
+Define route for processing POST request:
 ```ruby
 # config/routes.rb
 Myrails::Application.routes.draw do
@@ -203,7 +205,7 @@ Options for select are taken from simple_form.
 field :category, :string, :autocomplete, {label: 'Category', default_value: '', :source_query => :autocomplete_categories_url}
 ```
 
-It uses [bootstrap3_autcomplete_input gem](https://github.com/maxivak/bootstrap3_autocomplete_input). See available options in the [gem](https://github.com/maxivak/bootstrap3_autocomplete_input).
+It uses [bootstrap3_autocomplete_input gem](https://github.com/maxivak/bootstrap3_autocomplete_input). See available options in the [gem](https://github.com/maxivak/bootstrap3_autocomplete_input).
 
 by default, it will be filtered by text field :category, not by id.
 
