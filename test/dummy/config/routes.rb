@@ -6,8 +6,14 @@ Rails.application.routes.draw do
   get 'demos/basic_index' => 'demos#basic_index', as: :basic_demo
   post 'demos/basic_search' => 'demos#basic_search', as: :search_basic_demo
 
+  #get 'demos/client_orders' => 'demos#client_orders_index', as: :client_orders_demo
+  #post 'demos/client_orders' => 'demos#client_orders_search', as: :search_client_orders_demo
+
+
   # products
   resources :products do
+    get :autocomplete_product_title, :on => :collection
+
     collection do
       post :search
     end
@@ -16,6 +22,12 @@ Rails.application.routes.draw do
   resources :categories do
     get :autocomplete_category_title, :on => :collection
 
+  end
+
+  resources :orders do
+    collection do
+      post :search
+    end
   end
 
   # Example of regular route:

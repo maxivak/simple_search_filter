@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  autocomplete :product, :title
 
 =begin
   search_filter :index, {save_session: true, search_method: :post_and_redirect, search_url: :search_templates_url, search_action: :search} do

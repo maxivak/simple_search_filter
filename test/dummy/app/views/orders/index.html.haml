@@ -1,0 +1,23 @@
+%h1 Orders
+
+Filter:
+= inline_filter_form_for @filter
+%br
+%table.table.table-bordered
+  %tr
+    %th= link_to_sortable_column :id, 'ID'
+    %th Date
+    %th Client name
+    %th Client city
+
+  - @items.each do |item|
+    %tr
+      %td=item.created_at
+      %td=item.id
+      %td= item.client.name
+      %td= item.client.city
+
+= paginate @items
+%br
+Found: #{@items.total_count}
+

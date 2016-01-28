@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :category
+  belongs_to :order
 
   paginates_per 3
 
