@@ -60,10 +60,24 @@ module SimpleSearchFilter
         @filter.set_order params[:orderby], params[:orderdir]
         #(redirect_to action: name.to_sym and return) if @filter.search_method_post_and_redirect?
         if @filter.search_method_post_and_redirect?
-          redirect_to main_app.send(@filter.options[:url])
+          u = url_search_filter(@filter)
+          raise 'Bad url' if u.nil?
+          redirect_to u
+
+          #redirect_to main_app.send(@filter.options[:url])
+          #redirect_to send(@filter.options[:url])
         end
       end
 
+    end
+
+    def url_search_filter(filter)
+      opt_url = filter.options[:url]
+      u = nil
+      u = send(opt_url) if u.nil? && respond_to?(opt_url)
+      u = main_app.send(opt_url) if u.nil? && main_app.respond_to?(opt_url)
+
+      u
     end
 
     module ClassMethods
@@ -71,6 +85,7 @@ module SimpleSearchFilter
         # raise "You need a block to build!" unless block_given?
 
         init_method = "init_search_filter_#{name.to_s}"
+        search_action_name = (options[:search_action] || 'search')
 
         define_method(init_method) do
           prefix = options[:prefix] || "filter_#{params[:controller]}_#{name}"
@@ -87,13 +102,19 @@ module SimpleSearchFilter
         end
 
         # before_action callback
-        self.before_action :"#{init_method}", only: [name.to_sym, options[:search_action]]
+        self.before_action :"#{init_method}", only: [name.to_sym, search_action_name]
 
 
         #
-        define_method("#{options[:search_action]}") do
+        define_method("#{search_action_name}") do
+          u = url_search_filter(@filter)
+          raise 'Bad url' if u.nil?
+          redirect_to u
+
           #redirect_to action: name.to_sym
-          redirect_to main_app.send(options[:url])
+          #redirect_to main_app.send(options[:url])
+          #redirect_to send(options[:url])
+          #redirect_to '/'
         end
       end
 
