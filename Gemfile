@@ -6,14 +6,15 @@ source 'https://rubygems.org'
 gemspec
 
 
-gem 'rails', '~>4.2'
+gem 'rails', '~>5.0'
 gem 'mysql2'
 
 #
-gem 'haml-rails', '~>0.6.0'
+gem 'haml', "~> 4.0.6"
+gem 'haml-rails', "~> 0.9.0"
 
-gem 'sass', '~> 3.2.19'
-gem 'sass-rails', '4.0.3'
+gem 'sass'#, '~> 3.2.19'
+gem 'sass-rails' #, '5.0.6'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
