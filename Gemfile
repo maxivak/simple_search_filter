@@ -6,29 +6,36 @@ source 'https://rubygems.org'
 gemspec
 
 
-gem 'rails', '~>4.2'
+gem 'rails', '~> 5.0.1'
+
+# Use Puma as the app server
+gem 'puma', '~> 3.0'
+
+#
 gem 'mysql2'
 
 #
-gem 'haml-rails', '~>0.6.0'
+gem 'haml-rails', '~>0.9.0'
 
-gem 'sass', '~> 3.2.19'
-gem 'sass-rails', '4.0.3'
-gem 'uglifier'
-gem 'coffee-rails'
-gem 'jquery-rails'
+gem 'jquery-rails', '~>4.2.2'
 gem 'jquery-ui-rails'
-gem 'font-awesome-rails'
-gem 'bootstrap-sass'
-gem 'compass', '~> 0.12.7'
-gem 'compass-rails', '~> 2.0.0'
+gem 'sass-rails', '5.0.6'
+#gem 'coffee-rails'
+gem 'uglifier', '>= 1.3.0'
+gem 'compass'
+gem 'compass-rails'
 
+gem 'font-awesome-rails'
 
 #
 gem 'kaminari'
 gem 'kaminari-bootstrap'
-gem 'simple_form'
-gem 'bootstrap3_autocomplete_input', '0.1.3'
+
+#
+gem 'simple_form', '~>3.3.1'
+
+gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bootstrap_autocomplete_input', '~>0.2.0'
 
 
 
@@ -40,4 +47,6 @@ gem 'bootstrap3_autocomplete_input', '0.1.3'
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
