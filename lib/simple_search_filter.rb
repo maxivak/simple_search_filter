@@ -49,6 +49,7 @@ require 'simple_search_filter/searchable'
 
 
 # extend controller, helpers
+require 'simple_form'
 require 'simple_search_filter/controller'
 require 'simple_search_filter/helpers'
 require 'simple_search_filter/simple_form_extensions/wrappers_bootstrap'
