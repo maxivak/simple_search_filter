@@ -18,6 +18,12 @@ gem 'simple_search_filter'
 bundle install
 
 
+* for bootstrap 4:
+```ruby
+gem 'simple_search_filter', :git => "https://github.com/maxivak/simple_search_filter", :branch => "bootstrap4"
+```
+
+
 # Usage
 
 ## Controller
