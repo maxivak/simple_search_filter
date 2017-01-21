@@ -22,8 +22,7 @@ gem 'jquery-ui-rails'
 gem 'sass-rails', '5.0.6'
 #gem 'coffee-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'compass'
-gem 'compass-rails'
+
 
 gem 'font-awesome-rails'
 
@@ -35,7 +34,13 @@ gem 'kaminari-bootstrap'
 gem 'simple_form', '~>3.3.1'
 
 gem 'bootstrap', '~> 4.0.0.alpha6'
-gem 'bootstrap_autocomplete_input', '~>0.2.0'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+end
+
+
+gem 'bootstrap_autocomplete_input'
 
 
 
