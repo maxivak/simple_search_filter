@@ -17,8 +17,12 @@ gem 'simple_search_filter'
 
 bundle install
 
-* for bootstrap 4 with Rails 5 - use branch 'bootstrap4'
+* for bootstrap 4 with Rails 5 - use version >=0.1.0 or branch 'bootstrap4'
+
 ```ruby
+gem 'simple_search_filter', '0.1.0'
+
+# or branch bootstrap4
 gem 'simple_search_filter', :github => "maxivak/simple_search_filter", :branch => "bootstrap4"
 ```
 
