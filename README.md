@@ -27,6 +27,12 @@ gem 'simple_search_filter', :github => "maxivak/simple_search_filter", :branch =
 gem 'simple_search_filter', :github => "maxivak/simple_search_filter", :branch => "rails5"
 ```
 
+* for bootstrap 4:
+```ruby
+gem 'simple_search_filter', :github => "maxivak/simple_search_filter", :branch => "bootstrap4"
+```
+
+
 # Usage
 
 ## Controller
